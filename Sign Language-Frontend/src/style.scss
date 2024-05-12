@@ -1,0 +1,298 @@
+@import 
+    'style/nav.scss',
+    'style/table.scss';
+
+$footer-bg-color: #918D8E;
+$view-all-color: #03A4FF;
+$progress-bar: #12c2e9;
+
+
+
+/* Inputs and Buttons */
+
+.sign-input{
+    height: 60px;   
+}
+
+.sign-input::placeholder{
+    color: #B6B4B7;
+    text-align: left;
+}
+
+.sign-exit{
+    left: 90%;
+    top: 25px;  
+    position: absolute;
+}
+
+.sign-submit{
+    background-color: $form-text-color;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 7px;
+    font-size: 18px;
+    padding: 5px 30px;
+    position: relative;
+    text-align: center;
+    margin-top: 40px;
+    left: 30%;
+}
+
+
+/* Sign Form Footer */
+.sign-footer{
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.sign-footer-text{
+    position: relative;
+    text-align: center;
+    color: $form-text-color;
+}
+
+.sign-footer-btn{
+    width: 35%;
+    color: $form-text-color;
+    font-weight: bold;
+    text-align: left;
+    padding: 0px;
+}
+
+.sign-footer-icon{
+    margin-right: 2px;
+    width: 10%;
+    height: 20%;
+}
+
+
+/* Content Base */
+.dash-page{
+    display: flex;
+}
+.content{
+    margin: 30px 40px;
+    margin-left: 20%;       
+}
+
+.home-content{
+    padding: 40px 170px;
+}
+
+.home-title{
+    text-shadow: 1px 4px $dark-shadow;     
+    font-size: 42px;
+    font-weight: bolder;
+    margin-top: 100px;
+}
+
+.home-info{
+    padding: 50px 10px;
+    margin-left:100px;
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
+
+.home-desc{
+    font-size: 20px;
+}
+
+.home-mid-title{
+    text-align: center;
+}
+
+.home-learn-img{
+    padding-left: 10px;
+}
+
+.home-mid-desc{
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 40px;
+}
+
+.home-practice-img{
+    height: 390px;
+    width: 450px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.home-enhance-img{
+    margin-bottom: 10px;
+}
+
+.home-bottom-title{
+    font-weight: bolder;
+    margin-top: 100px;
+}
+
+.home-help{
+    margin: 40px 20px;
+    width: 690px;
+}
+
+.home-last{
+    margin-top: 100px;
+}
+
+.home-last-title{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.home-last-sub-title{
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 100px;
+}
+
+/* Card */
+.user-dash{
+    box-shadow: 1px 4px 10px 4px $dark-shadow; 
+    border-radius: 10px;
+    border: 2px solid $dark-shadow;
+    padding: 40px 30px;
+}
+
+.user-dash-header{
+    background-color: white;
+}
+
+.user-dash-body{
+    background-color: white;
+}
+
+.user-dash-footer{
+    background-color: white;
+}
+
+.view-all-btn{
+    color: $view-all-color;
+    font-size: 20px;
+    float: right;
+}
+
+.model-accuracy-title{
+    font-weight: bold;
+}
+
+.circle-icon{
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    bottom: 100px;
+}
+
+.model-name{
+    padding: 5px 5px;
+}
+
+.model-title {
+    margin-top: 100px;
+}
+
+.dev-car-text{
+    text-align: center;
+}
+
+.dev-car-desc{
+    text-align: center;
+}
+
+.dev-car-body{
+    padding-bottom: 40px;
+    box-shadow: 0px 4px 5px 0px $dark-shadow; 
+}
+
+
+.first-row-dev{
+    padding: 100px 400px;
+}
+
+.second-row-dev{
+    padding: 30px 90px;
+}
+
+
+/* Logs */
+.logs-header{
+    border: 10px solid $form-bg-color;
+
+}
+
+/* Search */
+.search-bar{
+    background-color: white;
+    border-radius: 30px;
+    border: 1px solid white;
+    max-height: 50px;
+}
+
+
+
+/* Footer */
+.footer{
+    background-color: $footer-bg-color;
+    margin-top: 140px;
+    padding: 10px 20px;
+}
+
+.footer-desc{
+    padding-left: 10px;
+    padding-top: 0;
+    margin-top: -10px;
+}
+
+.mail-size{
+    width: 4%;
+    height: 40%;
+}
+
+.contact-email{
+    color: white;
+}
+
+/* Loading Animation */
+.center-spinner{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.size-spinner{
+    width: 100px;
+    height: 100px;
+}
+
+/* Graphs */
+
+.progress-bar{
+    box-shadow: 1px 4px 10px 4px $dark-shadow; 
+    border-radius: 10px;
+    border: 2px solid $dark-shadow;
+    margin-right: 40px;
+    height: 100%;
+}
+
+.progress-header{
+    background-color: white;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.progress-body{
+    height: 100%;
+    padding-left: 170px;
+    padding-right: 170px;
+}
+
+.performance-progress{
+    font-size: 42px;
+}

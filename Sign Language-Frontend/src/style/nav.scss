@@ -1,0 +1,147 @@
+$dark-shadow: rgba(0, 0, 0, 0.2);
+$nav-top-bg-color: #2E2E30;
+$form-bg-color: #F4F4F4;
+$form-text-color:  #79797B;
+$side-bg-color: #49494B;
+$div-border-color: #918D8E;
+
+/* User Side Navigation Bar */
+.nv-dark{
+    box-shadow: 0 4px 8px 0 $dark-shadow; 
+    background-color: $nav-top-bg-color;
+}
+
+.logo-size{
+    max-height: 90px;
+}
+
+.icon-size{
+    max-height: 30px;
+}
+
+.logo-pos{
+    padding-left: 10px;
+    
+}
+
+.title{
+    margin-right: 210px;
+    margin-top: -10px;
+    font-weight: 50;
+    font-style: normal;
+}
+
+.buttons-pos {
+    display: flex;
+    justify-content: center;
+}
+
+.log-pos{
+    padding-right: 100px;
+}
+
+
+/* Admin Nav */
+.aside{
+    position: fixed;
+    height: 100%;
+    width: 17%;
+}
+
+.side-admin-bar{
+    background-color: $side-bg-color;
+    height: 100%;    
+}
+
+
+.admin-nav-cont{
+    margin-left: 17%;
+}
+
+.logo-title-admin{
+    font-weight: bold;
+    margin-left: -15px;
+    padding-top: 5px;
+}
+
+.logo-admin-size{
+    max-height: 90px;      
+    max-width: 130px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.role-title-nav{
+    border-top: 1px solid $div-border-color;
+    border-bottom: 1px solid $div-border-color;
+    color: white;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+/* Login, Signup Page */
+// Basic Properties of Form
+.sign-form{
+    background-color: $form-bg-color;
+    padding: 36px 31px 0px 31px;
+}
+
+.sign-title{
+    color: $form-text-color;
+    font-weight: bold;
+    font-size: 42px;
+}
+
+.sign-logo{
+    margin-right: 5px;
+}
+
+
+.sign-content{
+    justify-content: center;
+}
+
+/* Designs Form Input and Buttons */
+.sign-input-icon{
+    width: 15%;
+}
+
+// Icons
+.email-icon{
+    height: 60%;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.user-icon{
+    height: 60%;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.pass-icon{
+    height: 60%;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.admin-icons{
+    background-color: $side-bg-color;
+}
+
+.admin-name-icons{
+    color: white;
+    font-weight: bold;
+}
+
+.list-of-name{
+    margin-left: 10px;
+    padding-top: 7px;
+}
+
+.admin-name-sub-icons{
+    color: white;
+    font-weight: 100;
+}
