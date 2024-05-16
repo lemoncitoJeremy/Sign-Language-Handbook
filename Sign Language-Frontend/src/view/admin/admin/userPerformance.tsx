@@ -4,77 +4,59 @@ import {performance_color_coding} from "../../../components/utilities/color-codi
 import AdminNav from "../../../components/navigation/admin_nav";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
+interface UserData {
+    accountID: number;
+    username: string;
+    test_scores: number;
+    performance: string;
+}
 
 function UserPerformance(props: any){
-    const location = useLocation()
-    const [userData, setUserData] = useState();
-
-    const [openAside, setOpenAside] = useState(false);
+    const [userData, setUserData] = useState<UserData[]>([]);
 
     useEffect(() => {
-        // Google Analytics
-        setUserData(location.state.name);
-    }, [location]);
-    
+        // Fetch user data from the server when the component mounts
+        axios.get('http://localhost:5000/GetTest')
+            .then(response => {
+                if (response.data.status === 'success') {
+                    setUserData(response.data.users); 
+                } else {
+                    console.error('Error fetching users:', response.data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching users:', error);
+            });
+    }, []);
+
+    console.log('userData:', userData); 
+
     const titles = [
-        "UserID", 
+        "UserID",
         "Username",
         "Average Test Score",
         "Performance"
-    ]
-
-    const dictionary = [
-        {
-        "UserID": 0,
-        "Username": "Isiah Jordan",
-        "Average Test Score": 999,
-        "Performance": performance_color_coding("poor")
-        },
-        {
-        "UserID": 1,
-        "Username": "Isiah Jordan",
-        "Average Test Score": 999,
-        "Performance": performance_color_coding("good")
-        },
-        {
-        "UserID": 2,
-        "Username": "Isiah Jordan",
-        "Average Test Score": 999,
-        "Performance": performance_color_coding("good")
-        },
-        {
-        "UserID": 3,
-        "Username": "Isiah Jordan",
-        "Average Test Score": 999,
-        "Performance":  performance_color_coding("good")
-        },
-        {
-        "UserID": 4,
-        "Username": "Isiah Jordan",
-        "Average Test Score": 999,
-        "Performance":  performance_color_coding("poor")
-        },
-        {
-        "UserID": 5,
-        "Username": "Isiah Jordan",
-        "Average Test Score": 999,
-        "Performance":  performance_color_coding("excellent")
-        },
     ];
 
-    return (<>
-        <AdminNav
-            name={location.state.name}
-            setOpenAside={setOpenAside}
-            openAside={openAside}
-        />
-        <ViewCardTable
-            title={"User Performance"}
-            header={titles}
-            value={dictionary}
-        />
-
-    </>)
+    return (
+        <>
+            <AdminNav name={"Isiah Jordan"} />
+            {userData.length > 0 && (
+                <ViewCardTable
+                    title={"User Performance"}
+                    header={titles}
+                    value={userData.map(user => ({
+                        "UserID": user.accountID,
+                        "Username": user.username,
+                        "Average Test Score": user.test_scores,
+                        "Performance": performance_color_coding(user.performance.toLowerCase())
+                    }))}
+                />
+            )}
+        </>
+    );
 }
 
 export default UserPerformance;

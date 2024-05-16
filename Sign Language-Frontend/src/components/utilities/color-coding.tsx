@@ -6,6 +6,12 @@ const calc_color= (percent: number, start: number, end: number) => {
     return "hsl(" + c + ", 100%, 50%)";
 }
 
+const status_check = (status: string) =>{
+    if (status == "underreview") return <p className="text-warning">Under Review</p>
+    if (status == "rejected") return <p className="text-danger">Rejected</p>
+    if (status == "accepted") return <p className="text-warning">Accepted</p>
+}
+
 const check_score_boundary = (score: number, max: number) => {
     score = Math.round((score / max ) * 100)
     if (score >= 85 ) return "excellent"
@@ -27,4 +33,4 @@ const performance_color_coding = (score: string) => {
     }
 }
 
-export {performance_color_coding, calc_color, check_score_boundary};
+export {performance_color_coding, calc_color, check_score_boundary, status_check};

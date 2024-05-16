@@ -8,7 +8,7 @@ import Home from "../../assets/home@2x.png"
 import Dictionary from "../../assets/learn@2x.png"
 import Practice from "../../assets/practice@2x.png"
 import About from "../../assets/about@2x.png"
-import SignUp from "../../assets/signUp.png"
+import SignUp from "../../assets/signup.png"
 import SignIn from "../../assets/logout@2x.png"
 import Account from "../../assets/user@2x.png"
 

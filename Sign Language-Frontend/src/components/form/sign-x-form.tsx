@@ -89,7 +89,6 @@ function SignComponent(){
         </div>
 
 
-        
         <div className="modal fade" id="modalSignUpForm">
             <div className="modal-dialog">
                 <div className="modal-content sign-form">

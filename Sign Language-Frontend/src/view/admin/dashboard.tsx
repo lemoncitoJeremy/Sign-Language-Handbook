@@ -98,6 +98,7 @@ function Dashboard(props: any){
                 <>
                     <AdminNav
                     name={location.state.name}
+                    role={"admin"}
                     setOpenAside={setOpenAside}
                     openAside={openAside}
                     />

@@ -4,147 +4,91 @@ import AdminNav from "../../../components/navigation/admin_nav";
 import { ViewCardTable } from "../../../components/card/card_table";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import SignForm from "../../../components/form/sign-x-form"
+import { useNavigate, Link } from "react-router-dom"
 
-function AccountView(props: any){
+interface UserData {
+    accountID: number;
+    username: string;
+    email: string;
+    datecreated: string;
+    role: string;
+}
 
-    const location = useLocation()
-    const [userData, setUserData] = useState();
-
+function AccountView(props: any) {
+    const [userData, setUserData] = useState<UserData[]>([]);
     const [openAside, setOpenAside] = useState(false);
 
     useEffect(() => {
-        // Google Analytics
-        setUserData(location.state.name);
-    }, [location]);
+        axios
+            .get("http://localhost:5000/GetUsers")
+            .then((response) => {
+                if (response.data.status === "success") {
+                    setUserData(response.data.users);
+                } else {
+                    console.error("Error fetching users:", response.data.message);
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching users:", error);
+            });
+    }, []); // Empty dependency array to ensure this runs only once
 
-    const titles = [
-        "UserID", 
-        "Username",
-        "Email",
-        "Date Created",
-        "Role",
-        "Action"
-    ]
+    const handleDeleteAccountClick = (accountID: number) => {
+        console.log(accountID);
 
-    const dictionary = [
-        {
-        "UserID": 0,
-        "Username": "Isiah Jordan",
-        "Email": "Jordi@gmail.com",
-        "Date Created": "2024-01-01",
-        "Role": "Admin",
-        "Action": (
-            <div>
-                <button className="btn btn-unstyled">
-                    Edit
-                </button>
-                <button className="btn btn-unstyled">
-                    Delete
-                </button>
-            </div>
-        )
-        },
-        {
-        "UserID": 1,
-        "Username": "Isiah Jordan",
-        "Email": "Jordi@gmail.com",
-        "Date Created": "2024-01-01",
-        "Role": "Admin",
-        "Action": (
-            <div>
-                <button className="btn btn-unstyled">
-                    Edit
-                </button>
-                <button className="btn btn-unstyled">
-                    Delete
-                </button>
-            </div>
-        )
-        },
-        {
-        "UserID": 2,
-        "Username": "Isiah Jordan",
-        "Email": "Jordi@gmail.com",
-        "Date Created": "2024-01-01",
-        "Role": "Admin",
-        "Action": (
-            <div>
-                <button className="btn btn-unstyled">
-                    Edit
-                </button>
-                <button className="btn btn-unstyled">
-                    Delete
-                </button>
-            </div>
-        )
-        },
-        {
-        "UserID": 3,
-        "Username": "Isiah Jordan",
-        "Email": "Jordi@gmail.com",
-        "Date Created": "2024-01-01",
-        "Role": "Admin",
-        "Action": (
-            <div>
-                <button className="btn btn-unstyled">
-                    Edit
-                </button>
-                <button className="btn btn-unstyled">
-                    Delete
-                </button>
-            </div>
-        )
-        },
-        {
-        "UserID": 4,
-        "Username": "Isiah Jordan",
-        "Average Test Score": 999,
-        "Email": "Jordi@gmail.com",
-        "Date Created": "2024-01-01",
-        "Role": "Admin",
-        "Action": (
-            <div>
-                <button className="btn btn-unstyled">
-                    Edit
-                </button>
-                <button className="btn btn-unstyled">
-                    Delete
-                </button>
-            </div>
-        )
-        },
-        {
-        "UserID": 5,
-        "Username": "Isiah Jordan",
-        "Email": "Jordi@gmail.com",
-        "Date Created": "2024-01-01",
-        "Role": "Admin",
-        "Action": (
-            <div>
-                <button className="btn btn-unstyled">
-                    Edit
-                </button>
-                <button>
-                    Delete
-                </button>
-            </div>
-        )
-        },
-    ];
+        const confirmDelete = window.confirm("Are you sure you want to delete this user?");
 
-    return (<>
-        <AdminNav
-            name={location.state.name}
-            setOpenAside={setOpenAside}
-            openAside={openAside}
-        />
-        <ViewCardTable
-            title={"Account View"}
-            header={titles}
-            value={dictionary}
-        />
+        if (confirmDelete) {
+            fetch("http://localhost:5000/DeleteUser", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ accountID: accountID }),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        // No need to manually update state here
+                    } else {
+                        console.error("Delete error:", response.statusText);
+                    }
+                })
+                .catch((error) => console.error("Delete error:", error.message));
+        }
+    };
+
+    const titles = ["UserID", "Username", "Email", "Date Created", "Role", "Action"];
+    return (
+        <>
+            <AdminNav name={"Isiah Jordan"} setOpenAside={setOpenAside} openAside={openAside} />
+            {userData.length > 0 && (
+                <ViewCardTable
+                    title={"Account View"}
+                    header={titles}
+                    value={userData.map((user) => ({
+                        UserID: user.accountID,
+                        Username: user.username,
+                        Email: user.email,
+                        "Date Created": user.datecreated,
+                        Role: user.role,
+                        Action: (
+                            <div>
+                                <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#modalEditForm" onClick={() => (user.accountID)}>
+                                    Edit
+                                </button>
+                                <button type="button" className="btn" onClick={() => handleDeleteAccountClick(user.accountID)}>
+                                    Delete
+                                </button>
+                                <SignForm />
+                            </div>
+                        ),
+                    }))}
+                />
+            )}
         </>
-    )
+    );
 }
 
 export default AccountView;

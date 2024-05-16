@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import AdminNav from "../../../components/navigation/admin_nav";
 import { useLocation } from "react-router-dom";
-import NoAsideHandbook from "../../../layout/no-aside-handbook";
-import WithAsideHandbook from "../../../layout/with-aside-handbook";
+import AdminNav from "../../../components/navigation/admin_nav";
+import NoAsideTest from "../../../layout/no-aside-test";
+import WithAsideTest from "../../../layout/with-aside-test";
 
-
-function Handbook(){
+function Test(){
     const location = useLocation()
     const [userData, setUserData] = useState();
 
@@ -26,13 +25,13 @@ function Handbook(){
             />
             <div className="content-fluid">
                 {openAside ? (
-                    <WithAsideHandbook/>
+                    <WithAsideTest/>
                 ):(
-                    <NoAsideHandbook/>
+                    <NoAsideTest/>
                 )}
             </div>
         </>
     )
 }
 
-export default Handbook;
+export default Test;
