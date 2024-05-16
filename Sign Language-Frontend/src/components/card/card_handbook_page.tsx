@@ -11,7 +11,7 @@ import axios from "axios"
 function CardHandbookList(props: any){
     const [cards, setCards] = useState();
 
-    
+        
 
     return(
         <div className="container-fluid" style={{width: "100%"}}>
