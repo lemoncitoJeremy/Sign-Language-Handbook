@@ -1,0 +1,24 @@
+.CreateAssessment-form-layout{
+    background-color: white;
+    box-shadow: 0px 4px 5px 0px ; 
+    padding: 2%;
+    margin: 0 auto; /* Centers the form horizontally */
+    width: 50%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 7px;
+   
+}
+.CreateAssessment-SubmitButton{
+    
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5%;
+    
+}
+
+
+
+.myQuestions{
+    margin-top: 3%;
+}
