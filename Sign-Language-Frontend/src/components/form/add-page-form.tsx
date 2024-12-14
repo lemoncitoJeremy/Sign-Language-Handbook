@@ -15,19 +15,24 @@ function AddPageForm(props: any){
         setDesc(event.target.value)
     }
 
+
     const createCard = () =>{
-        const arr = props.cards;
-        const size = props.cards[props.cards.length-1].length;
-        console.log(size);
-        if (size == 4){
-            arr.push([]);
-        }
-        arr[arr.length-1].push(
-        <CardHandTitle
-            title={title}
-            desc={desc}
-        />)
-        props.setCards(arr);
+        fetch("http://localhost:5000/AddPage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title: title, description: desc}),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        // No need to manually update state here
+                    } else {
+                        
+                    }
+                })
+                .catch((error) => console.error("Delete error:", error.message));
+        window.location.reload();
     }
 
     return(
@@ -45,7 +50,6 @@ function AddPageForm(props: any){
                             Description
                         </p>
                         <textarea onChange={handleDesc} className="form-control handbook-page-desc mb-3 border border-grey" name="test2" style={{height:"150px"}} id="exampleFormControlTextarea1"></textarea>
-                        <CardContentStyle/>
                         <button className="btn btn-primary float-end mt-5" onClick={createCard} data-bs-dismiss="modal"> Publish </button>
                     </div>
                 </div>

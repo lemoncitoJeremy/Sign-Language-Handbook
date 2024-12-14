@@ -29,6 +29,7 @@ function PracticeCard(props: any){
     return(
 
 <>
+<div className="container-fluid" style={{width: "100%"}}>
     {showAnswertest ? (
                     <NoAsideTest testID={selectedtestID} /> // Render NoAsideTest component if showAnswertest is true
                 ) : (
@@ -45,11 +46,11 @@ function PracticeCard(props: any){
                                 <p className="h4">{props.name}</p>
                                 <p className="">{props.desc}</p>
                             </div>
-                            <div className="score_retake_container" style={{paddingTop:'1%'}}>
+                            <div className="score_retake_container" style={{paddingTop:'1%'}} >
                                 <div className="score_retake d-flex">
-                                    <button className="btn btn-unstyled px-4" style={{ backgroundColor: "#CDCBCE"}}>
+                                    <button className="btn btn-unstyled px-4" style={{ backgroundColor: "#CDCBCE"}} >
                                         <img src={Score} className="d-inline me-2" alt="Score Icon" />
-                                        <span style={{ color: "white", fontWeight: "bold"}}>{props.score}</span>
+                                        <span style={{ color: "white", fontWeight: "bold"}}>{props.test_score}</span>
                                     </button>
                                     <button className="btn btn-unstyled ms-3" style={{ backgroundColor: "lightgreen" }} onClick={() => handleSubmit(props.testID) } >
                                         <img src={Retake} className="d-inline me-2" alt="Retake Icon" />
@@ -61,6 +62,7 @@ function PracticeCard(props: any){
                     </div> 
                 </div>
             )}
+        </div>
     </>
         
     )

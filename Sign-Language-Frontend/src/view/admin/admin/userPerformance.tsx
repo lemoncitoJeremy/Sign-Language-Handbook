@@ -5,6 +5,7 @@ import AdminNav from "../../../components/navigation/admin_nav";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useUser } from "../../../components/User-Context/UserContext";
 
 interface UserData {
     accountID: number;
@@ -14,7 +15,7 @@ interface UserData {
 }
 
 function UserPerformance(props: any){
-    const [userData, setUserData] = useState<UserData[]>([]);
+    const [usersData, setUserData] = useState<UserData[]>([]);
 
     useEffect(() => {
         // Fetch user data from the server when the component mounts
@@ -31,7 +32,7 @@ function UserPerformance(props: any){
             });
     }, []);
 
-    console.log('userData:', userData); 
+    console.log('userData:', usersData); 
 
     const titles = [
         "UserID",
@@ -39,21 +40,41 @@ function UserPerformance(props: any){
         "Average Test Score",
         "Performance"
     ];
+    //get logged in user
+    const {userData} = useUser()
+    console.log(userData);
 
+
+    const [Open , setOpen] = useState(false);
     return (
         <>
-            <AdminNav name={"Isiah Jordan"} />
-            {userData.length > 0 && (
-                <ViewCardTable
-                    title={"User Performance"}
-                    header={titles}
-                    value={userData.map(user => ({
-                        "UserID": user.accountID,
-                        "Username": user.username,
-                        "Average Test Score": user.test_scores,
-                        "Performance": performance_color_coding(user.performance.toLowerCase())
-                    }))}
-                />
+            <AdminNav name={userData?.username} role={userData?.role} setOpenAside={setOpen} openAside={open} />
+            {usersData.length > 0 && (   
+                Open ? (
+                        <ViewCardTable
+                            title={"User Performance"}
+                            header={titles}
+                            value={usersData.map(user => ({
+                                "UserID": user.accountID,
+                                "Username": user.username,
+                                "Average Test Score": user.test_scores,
+                                "Performance": performance_color_coding(user.performance.toLowerCase())
+                            }))}
+                        />
+                ): (
+                    <div className="" style={{width:'83%', marginLeft:'325px'}}>
+                    <ViewCardTable
+                        title={"User Performance"}
+                        header={titles}
+                        value={usersData.map(user => ({
+                            "UserID": user.accountID,
+                            "Username": user.username,
+                            "Average Test Score": user.test_scores,
+                            "Performance": performance_color_coding(user.performance.toLowerCase())
+                        }))}
+                    />
+                </div>
+                )
             )}
         </>
     );

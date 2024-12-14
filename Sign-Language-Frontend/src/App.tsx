@@ -22,11 +22,20 @@ import Feedback from "./view/admin/expert/feedback";
 import {HandbookContent, DictionaryContent} from "./view/admin/editor/content";
 import Test from "./view/admin/editor/test";
 import Create_practice from "./components/create_practice_tests/create_practice";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import UserNav from "./view/user/learn"
+import { CardUserHandbookList } from "./components/card/card_user_handbook";
+import { UserHandbookContent } from "./components/card/card_user_handbook";
+import UserFeedback from "./view/user/feedback/Feedback";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/feedback" element={<UserFeedback/>}/>
+        <Route path="/handbook" element={<CardUserHandbookList/>}/>
+        <Route path="/handbook/content" element={<UserHandbookContent/>}/>
+        <Route path="/practice" element={<UserNav/>}/>
         <Route path="editor/practice/create_practice" element={<Create_practice/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/" element={<Homepage/>}/>

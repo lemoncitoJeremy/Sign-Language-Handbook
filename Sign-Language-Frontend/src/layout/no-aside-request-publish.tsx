@@ -1,33 +1,54 @@
+import { useEffect, useState } from "react";
 import CardReview from "../components/card/card_view_request";
 import "../style.scss"
+import axios from "axios";
 
 function NoAsideRequestPublish(props: any){
-        const arr = [
-            {"name": "jordan", "title": "test", "status": "underreview", "date": "2021-09-14", "msg": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +  
-                'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' + 
-                'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.' +
-                'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            },
-            {"name": "Test", "title": "test", "status": "underreview", "date": "2021-09-14", "msg": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +  
-                'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' + 
-                'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.' +
-                'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            }
-        ]
+    const [data, setData] = useState<any>([]);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:5000/GetRequest');
+            const res = response.data.data;
+            
+            console.log(res);
+            setData(res);   
+    
+            
+            
+            // Handle successful response
+          } catch (error) {
+            console.error('Error:', error);
+            // Handle error
+          }
+        };
+    
+        fetchData();
+    
+        // Cleanup function (optional)
+        // This function will be called when the component unmounts or before the effect runs again
+        // Cleanup code here, if needed
+        return () => {
+        };
+      }, []); // Empty dependency array means this effect runs only once when the component mounts
+
+
 
     return(
         <>
-        <div className="row">
-            <div className="col">
-                <CardReview
-                    name={arr[0].name}
-                    date={arr[0].date}
-                    status={arr[0].status}
-                    title={arr[0].title}
-                    msg={arr[0].msg}
+            {data.map((items: any, index_row: number) => (
+                <div className="row p-5 m" key={index_row}>
+                    <CardReview
+                    name={items.name}
+                    date={items.date}
+                    status={items.status}
+                    title={items.title}
+                    msg={items.msg}
                 />
-            </div>
-        </div>
+                </div>
+            ))}
         </>
     )
 }

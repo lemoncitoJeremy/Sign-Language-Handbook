@@ -15,37 +15,38 @@ import SideBar from "../../assets/sidebar@2x.png"
 // Page Popup
 import AdminSideBar from "../aside/admin"
 import EditorSideBar from "../aside/editor"
+import { useNavigate } from "react-router-dom"
 
+import{ useUser } from '../User-Context/UserContext'
 // Pages Event Navigation
 // Non Login Homepage
-function onClickNavHomepage(navigate: any){
-    navigate('/')
-}
-
-// User Login Homepage
-function onClickNavUserHomepage(navigate: any){
-    navigate('/user')
-}
 
 
-function onClickNavLearn(navigate: any){
-    navigate('/learn')
-}
-
-
-function onClickNavPractice(navigate: any){
-    navigate('/practice')
-}
-
-
-function onClickNavAbout(navigate: any){
-    navigate('/about')
-}
 
 // Navigation
 function AdminNav(props: any){
+
+    const { updateUser, userData } = useUser();
     
+    const handleLogout = () => {
+        const updatedUserData = {
+            ...userData,
+            isLoggedIn: false,
+            // Check for undefined properties and convert them to string
+            accountID: '',
+            username: '',
+            email: '',
+            role: ''
+        };
+        updateUser(updatedUserData);
+        console.log('loggedOut',updatedUserData)
+        navigate('/');
+    };
+
+    
+    const navigate = useNavigate()
     // Open the Side bar
+
     const openSideTab = () => {
         props.setOpenAside(!props.openAside);
 
@@ -60,7 +61,6 @@ function AdminNav(props: any){
                     <div className="col col-md-2 min-vh-100 aside"> 
                     {/* min-vh-100 takes the sidebar and match it with the window size */}
                     {/* Overview of the Features
-
                         Logo
                         Name of the Admin
                         Privilege
@@ -90,7 +90,7 @@ function AdminNav(props: any){
                             </div>
                             <div className="col logo-pos">
                                 {/* Logo Title  */}
-                                <button type="button" className="d-inline-flex btn btn-unstyled" onClick={() => onClickNavHomepage(props.navigate)}>
+                                <button type="button" className="d-inline-flex btn btn-unstyled" onClick={()=>{navigate('/')}}>
                                     {/* Image */}
                                     <img className="img-fluid logo-size" src={Logo}/> 
                                     {/* Title */}
@@ -116,7 +116,7 @@ function AdminNav(props: any){
                                 <button type="button" className="btn">
                                     <img className="icon-size" src={Practice}/>
                                 </button>
-                                <button type="button" className="btn">
+                                <button type="button" className="btn" onClick={() => navigate('/feedback')}>
                                     <img className="icon-size" src={About}/>
                                 </button>
                             </div>
@@ -127,7 +127,7 @@ function AdminNav(props: any){
                                     <button type="button" className="btn">
                                     <img className="img-fluid icon-size" src={Account}/>
                                     </button>
-                                    <button type="button" className="btn" onClick={onClickNavHomepage}>
+                                    <button type="button" className="btn" onClick={()=>{navigate('/')}}>
                                         <img className="img-fluid icon-size" src={SignIn}/>
                                     </button>      
                         
@@ -150,7 +150,7 @@ function AdminNav(props: any){
                             </div>
                             <div className="col logo-pos">
                                 {/* Logo Title  */}
-                                <button type="button" className="d-inline-flex btn btn-unstyled" onClick={() => onClickNavHomepage(props.navigate)}>
+                                <button type="button" className="d-inline-flex btn btn-unstyled" onClick={()=>{navigate('/')}}>
                                     {/* Image */}
                                     <img className="img-fluid logo-size" src={Logo}/> 
                                     {/* Title */}
@@ -176,7 +176,7 @@ function AdminNav(props: any){
                                 <button type="button" className="btn">
                                     <img className="icon-size" src={Practice}/>
                                 </button>
-                                <button type="button" className="btn">
+                                <button type="button" className="btn" onClick={() => navigate('/feedback')}>
                                     <img className="icon-size" src={About}/>
                                 </button>
                             </div>
@@ -187,7 +187,7 @@ function AdminNav(props: any){
                                     <button type="button" className="btn">
                                     <img className="img-fluid icon-size" src={Account}/>
                                     </button>
-                                    <button type="button" className="btn" onClick={onClickNavHomepage}>
+                                    <button type="button" className="btn" onClick={handleLogout}>
                                         <img className="img-fluid icon-size" src={SignIn}/>
                                     </button>      
                         

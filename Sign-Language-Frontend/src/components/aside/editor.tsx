@@ -31,12 +31,7 @@ function EditorSideBar(props: any){
                         <button type="button" className="btn btn-btn-unstyled admin-name-icons">Request Publish</button>
                     </div>
                 </div>
-                <div className="d-inline-flex admin-icons list-group-item border-0">                        
-                    <img className="img-fluid" src={Change} style={{height:"70%", width:"15%", margin:"5px 3px 5px 0px"}}/>
-                    <div className="d-flex-column list-of-name">
-                        <p className="admin-name-icons">Change Translator Model</p>
-                    </div>
-                </div>
+                
                 <div className="d-inline-flex admin-icons list-group-item border-0">                        
                     <img className="img-fluid" src={Handbook} style={{height:"60%", width:"15%", margin:"5px 3px 5px 0px"}}/>
                     <div className="d-flex-column list-of-name">

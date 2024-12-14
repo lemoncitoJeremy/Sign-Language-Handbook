@@ -18,7 +18,7 @@ function Test(){
     return(
         <>
             <AdminNav
-                name={"Jordan"}
+                name={"Jordans"}
                 role={"editor"}
                 setOpenAside={setOpenAside}
                 openAside={openAside}

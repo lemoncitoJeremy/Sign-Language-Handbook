@@ -5,7 +5,7 @@ import ManageUser from "../../assets/user-2@2x.png"
 
 function AdminSideBar(props: any){
     return(
-        <div className="d-flex flex-column bd-highlight mb-3 side-admin-bar">
+        <div className="d-flex flex-column bd-highlight mb-3 side-admin-bar" >
             {/* Logo */}
             <div className="d-inline-flex">
                 <img className="img-fluid logo-admin-size" src={Logo}/>
